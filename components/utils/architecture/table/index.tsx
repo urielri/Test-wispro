@@ -2,7 +2,7 @@ import styles from "./style.module.scss";
 import Item from "./item";
 import { UserInfo } from "components/interface";
 import { useState, useEffect } from "react";
-import ModalUser from 'components/utils/architecture/modal'
+import ModalUser from "components/utils/architecture/modal";
 const temporalObject: UserInfo = {
   nombre: "Uriel",
   apellido: "Rivero",
@@ -21,7 +21,11 @@ function Table(props: { data: any }) {
   };
   return (
     <div className={styles.table}>
-      <Item data={temporalObject} designation="identifiers"handleModal={handleModal} />
+      <Item
+        data={temporalObject}
+        designation="identifiers"
+        handleModal={handleModal}
+      />
       <div className={styles.data}>
         <Item
           data={temporalObject}
@@ -32,7 +36,7 @@ function Table(props: { data: any }) {
       <div className={styles.additionalData}>
         <span>Mostrando 5 usuarios de 24</span>
       </div>
-      <ModalUser isOpen={isOpen} closeModal={handleModal}/>
+      <ModalUser isOpen={isOpen} closeModal={handleModal} data={null} />
     </div>
   );
 }
