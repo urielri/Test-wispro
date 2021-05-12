@@ -6,7 +6,7 @@ function FormUser(props): JSX.Element {
     <div className={styles.formUser}>
       <div className={styles.info}>
         <h3>Editar usuario</h3>
-        <span>guardar</span>
+        <Button type='simple'>Guardar</Button>
       </div>
       <div className={styles.section}>
         <h4>Datos principales</h4>

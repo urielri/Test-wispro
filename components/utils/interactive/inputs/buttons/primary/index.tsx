@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import style from './style.module.scss';
 
 function Button(props: any) {
-  const { children, type, width, onClick, loader } = props;
+  const { children, type, width, onClick, loader, background } = props;
   const r = useRef(null);
   const [currentType, setCurrentT] = useState(style.default);
   useEffect(() => {
@@ -40,7 +40,7 @@ function Button(props: any) {
       ref={r}
       className={style.button}
       onClick={onClick}
-      style={{ width: width ? width : 'auto' }}
+      style={{ width: width ? width : 'auto' , backgroundColor: background && background}}
       id={children.length}
     >
       <span>{children}</span>

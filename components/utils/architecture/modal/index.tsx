@@ -23,7 +23,7 @@ function ModalUser(props: {
         <a onClick={() => closeModal()}>
           <Close />
         </a>
-        <Button>Eliminar usuario</Button>
+        <Button background='#EB3232' type="rounded">Eliminar usuario</Button>
       </div>
       <Tarjet>
         <h3>Actividad de usuario</h3>

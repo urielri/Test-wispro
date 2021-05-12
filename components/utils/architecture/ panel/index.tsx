@@ -7,11 +7,11 @@ function Panel(): JSX.Element {
         <h3>
           Bienvenido, <span>usuario</span>
         </h3>
-        <h4>Salir</h4>
+        <Button type='simple'>Salir</Button>
       </div>
       <div className={styles.actions}>
-      <Button>Figma</Button>
-      <Button>Figma</Button>
+      <Button type='rounded'>Figma</Button>
+      <Button type='rounded'>GitHub</Button>
       </div>
     </div>
   );
