@@ -1,0 +1,19 @@
+{
+  "name": "backend",
+  "version": "1.0.0",
+  "description": "test",
+  "main": "index.tsx",
+  "author": "urielri",
+  "license": "MIT",
+  "private": null,
+  "scripts": {
+    "build": "rm -rf ./build && tsc",
+    "start": "node ./src/index.ts"
+  },
+  "devDependencies": {
+    "typescript": "^4.2.4"
+  },
+  "dependencies": {
+    "mongoose": "^5.12.8"
+  }
+}
