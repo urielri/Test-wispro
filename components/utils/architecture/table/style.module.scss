@@ -1,0 +1,55 @@
+@use 'sass:map';
+@import '../../../../styles/vars.module.scss';
+.table{
+    display: grid;
+    padding: 48px;
+    background-color: $monocromatic-white;
+    border-radius: $radius;
+    row-gap: 48px;
+    grid-template-rows: 80px max-content 48px;
+    height: max-content;
+    .data{
+        display: grid;
+        padding: 2px 4px;
+        row-gap: 24px;
+        height: 100%;
+        max-height: calc(68px * 4);
+        overflow: scroll;
+    }
+    .additionalData {
+        text-align: right;
+        span{
+            font-size: map.get($text-16, 'size');
+            font-weight: map.get($text-16, 'weight');
+            color: $monocromatic-alternative-grey;
+            line-height: map.get($text-16, 'line-height');
+        }
+    }
+}
+.row{
+    display: flex;
+    justify-content: space-between;
+    height: min-content;
+    border-radius: $radius;
+    padding: 12px 24px;
+    background-color: $monocromatic-terceary-white;
+
+}
+.identifiers {
+    padding: $padding-24;
+    box-shadow: $shadow-tarjet;
+}
+.field{
+    cursor: pointer;
+    transition: all 0.2s linear;
+    span{
+        font-size: map.get($text-16, 'size');
+        font-weight: map.get($text-16, 'weight');
+        color: $monocromatic-black;
+        line-height: map.get($text-16, 'line-height');
+    }
+    &:hover{
+        background-color: $monocromatic-white;
+        box-shadow: $shadow-discret;
+    }
+}

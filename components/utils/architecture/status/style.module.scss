@@ -1,0 +1,31 @@
+@import '../../../../styles/vars.module.scss';
+.containerStatus {
+    display: grid;
+    grid-template-rows: repeat(3, auto);
+    align-content: revert;
+    row-gap: 36px;
+    padding: 48px;
+    height: 100%;
+    width: 400px;
+    background-color: $monocromatic-white;
+    border-radius: $radius;
+    max-height: 1100px;
+}
+.controller{
+    display: grid;
+    justify-content: center;
+    box-shadow: $shadow-tarjet;
+    border-radius: $radius;
+    padding: $padding-24;
+    min-width: 150px;
+    height: 100%;
+    align-content: center;
+    .status{
+
+        text-align: center;
+        display: grid;
+        row-gap: 16px;
+        height: 100%;
+
+    }
+}

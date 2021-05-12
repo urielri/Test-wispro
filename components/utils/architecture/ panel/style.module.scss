@@ -1,0 +1,18 @@
+@import '../../../../styles/vars.module.scss';
+.panel{
+    background-color: $monocromatic-white;
+    border-radius: $radius;
+    display: grid;
+    width: auto;
+    padding: 48px;
+    .basicInfo{
+        display: flex;
+        justify-content: space-between;
+      //  align-items: center;
+        row-gap: 24px;
+    }
+    .actions{
+        display: flex;
+        column-gap: 48px;
+    }
+}

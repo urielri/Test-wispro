@@ -1,0 +1,54 @@
+@import "../../../../styles/vars.module.scss";
+.modal {
+  position: absolute;
+  width: 1000px;
+  height: 100%;
+  //background: $monocromatic-white;
+  display: flex;
+  box-sizing: border-box;
+  right: 0;
+  z-index: 13;
+  border-radius: 40px 0px 0px 40px;
+  padding: 48px;
+  background: rgba(251, 251, 251, 0.5);
+  backdrop-filter: blur(15px);
+  row-gap: 48px;
+  flex-direction: column;
+  overflow-y: auto;
+}
+.overlayModal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: rgba(20, 20, 20, 0.2);
+  z-index: 11;
+  overflow: hidden;
+}
+.portalModal {
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  background: white;
+  overflow: hidden;
+}
+.header{
+  width: 100%;
+  height: min-content;
+  align-items: center;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  background: $monocromatic-white;
+  box-shadow: $shadow-tarjet;
+  padding: $padding-24;
+  border-radius: $radius;
+ 
+  svg{
+    width: 30px;
+    height: 30px;
+    path{
+      fill: $monocromatic-grey;
+
+    }
+  }
+}

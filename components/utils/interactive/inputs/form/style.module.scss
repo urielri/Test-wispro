@@ -1,0 +1,214 @@
+//@import '../../../../../styles/Variables.scss';
+.containerSelect {
+    max-width: 350px;
+    height: 50px;
+    margin: 20px 0;
+    position: relative;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    label {
+      display: flex;
+      width: 100%;
+      height: 100%;
+      cursor: pointer;
+      align-items: center;
+      transition: all 0.3s ease-out;
+      span {
+        color: #d7d7d7;
+        font-weight: bold;
+        height: 25px;
+        cursor: pointer;
+        user-select: none;
+        background: #fff;
+        display: flex;
+        padding: 0 8px;
+        border-radius: 10px;
+        transition: all 0.3s ease-out;
+      }
+    }
+  }
+
+  /*
+   *
+   * negro: '#313131',
+    gris: '#D7D7D7',
+    grisClaro: '#E5E5E5',
+    azulOscuro: '#145899',
+    celeste: '#237ED5',
+   * */
+  .select {
+    display: flex;
+    align-items: center;
+    padding-left: 15px;
+    width: 100%;
+    box-sizing: border-box;
+    height: 100%;
+    border: 2px solid #d7d7d7;
+    border-radius: 5px;
+    input[type='text'] {
+      position: absolute;
+      background: transparent;
+      border: 0;
+      color: #313131;
+      z-index: 0;
+      pointer-events: none;
+      outline: none;
+      width: 100%;
+      height: 100%;
+      user-select: none;
+    }
+  }
+  .activeSelect {
+    border-color: #237ed5;
+    label {
+      span {
+        color: #237ed5;
+        transform: translate(10px, -25px);
+      }
+    }
+  }
+  .extend {
+    width: 100%;
+    height: 0;
+    z-index: 22;
+    display: flex;
+    position: absolute;
+    transition: all 0.3s ease-out;
+    transition-delay: 0.3s;
+    overflow-y: auto;
+    overflow-x: hidden;
+    background: #fff;
+    ul {
+      list-style: none;
+      visibility: hidden;
+      padding: 0;
+      margin: 0;
+      width: 100%;
+      height: auto;
+    }
+  }
+  .active {
+    height: 300px;
+    transition: all 0.3s ease-out;
+    filter: drop-shadow(0 0 15px rgba(0, 0, 0, 0.2));
+    transition-delay: 0.1s;
+    ul {
+      visibility: visible;
+    }
+  }
+
+  .option {
+    display: flex;
+    height: 40px;
+    align-items: center;
+    transition: all 0.3s ease-out;
+    cursor: pointer;
+    width: 100%;
+    padding: 0 15px;
+    span {
+      color: #d7d7d7;
+      transition: all 0.3s ease-out;
+      display: flex;
+      font-weight: bold;
+      height: 100%;
+      align-items: center;
+    }
+    &:hover {
+      background: rgba(200, 200, 200, 0.1);
+    }
+    &:hover > span {
+      transform: translateX(5px);
+    }
+  }
+
+//SELECT TEMPORAL SIMPLE DE LA PAGINA PRODUCTO
+
+  .containerSimple{
+    width: 50px;
+    height: 40px;
+    border: 2px solid $color-lightGrey;
+    border-radius: 5px;
+    display: grid;
+
+    place-items: center;
+    select{
+      border: none;
+        cursor: pointer;
+      background: none;
+      outline: none;
+      padding: 0px 8px 0 12px;
+      width: 100%;
+      height: 100%;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      font-weight: 500;
+      font-size: 1.1rem;
+      color: $color-lightGrey;
+      background-image: none;
+      appearance: none;
+      z-index: 0;
+      option{
+        width: 100%;
+        color: $color-lightGrey;
+        background: $blanco;
+        border: 2px solid $color-lightGrey;
+        pointer-events: none;
+        appearance: none;
+        outline: none;
+
+      }
+      &:disabled{
+        color: red;
+      }
+    }
+  }
+.active{
+  border-color: $color-principal;
+  select{
+    color: $color-principal
+  }
+}
+// INPUT QUE SE CAMBIA CON EL + Y -
+
+.containerIncremental{
+  width: 150px;
+  height: 100px;
+  display: grid;
+  grid-template:   auto 20px / repeat(3, (100%/3));
+  align-items: center;
+  input[type='text']{
+    outline: none;
+    justify-self: center;
+    width: 40px;
+    height: 50px;
+    border: 2px solid $color-lightGrey;
+    background: none;
+    color: $color-lightGrey;
+    font-weight: 700;
+    border-radius: 5px;
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  .option{
+    justify-content: center;
+    padding: 0;
+    font-weight: 700;
+    font-size: 1.3rem;
+    color: $color-lightGrey;
+
+    &:hover{
+    background: none;
+    color: $color-blue;
+    }
+  }
+.descrpition{
+  grid-column: 1/4;
+    color: $color-lightGrey;
+    font-weight: 500;
+
+}
+}
