@@ -3,40 +3,44 @@ import Item from "./item";
 import { UserInfo } from "components/interface";
 import { useState, useEffect } from "react";
 import ModalUser from "components/utils/architecture/modal";
-const temporalObject: UserInfo = {
-  nombre: "Uriel",
-  apellido: "Rivero",
-  email: "urielrivps@gmail.com",
-  dni: "44699894",
-  alta: "Positivo",
-  domicilio: "Alvear 5708",
-};
-function Table(props: { data: any }) {
-  const [isOpen, setOpen] = useState<boolean>(false);
+import { getUser, getUsers } from "api";
+function Table(props: { data: UserInfo[] }) {
+  const { data } = props;
+  const [currentUsers, setCurrentUsers] = useState(data);
+  const [isOpen, setOpen] = useState({ active: false, id: "" });
   useEffect(() => {
-    console.log(isOpen);
+    !isOpen.active && getUsers().then((res) => {setCurrentUsers(res)});
   }, [isOpen]);
-  const handleModal = () => {
-    setOpen((isOpen) => !isOpen);
+  const handleModal = (id) => {
+    setOpen({ active: !isOpen.active, id: id });
   };
   return (
     <div className={styles.table}>
-      <Item
-        data={temporalObject}
-        designation="identifiers"
-        handleModal={handleModal}
-      />
+      <Item designation="identifiers" handleModal={handleModal} />
       <div className={styles.data}>
-        <Item
-          data={temporalObject}
-          designation="field"
-          handleModal={handleModal}
-        />
+        {currentUsers.map((res) => (
+          <Item
+            data={{
+              nombre: res.nombre,
+              apellido: res.apellido,
+              dni: res.dni,
+              domicilio: res.domicilio,
+              alta: res.alta,
+              email: res.email,
+            }}
+            designation="field"
+            handleModal={() => handleModal(res._id)}
+          />
+        ))}
       </div>
       <div className={styles.additionalData}>
-        <span>Mostrando 5 usuarios de 24</span>
+        <span>Mostrando {currentUsers.length} usuarios de {currentUsers.length}</span>
       </div>
-      <ModalUser isOpen={isOpen} closeModal={handleModal} data={null} />
+      <ModalUser
+        isOpen={isOpen.active}
+        id={isOpen.id}
+        closeModal={handleModal}
+      />
     </div>
   );
 }

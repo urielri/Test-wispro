@@ -1,11 +1,13 @@
 import styles from "./style.module.scss";
 import { UserInfo } from "components/interface";
+const identifiers = ["nombre", "apellido", "dni", "domicilio", "alta", "email"];
 function Item(props: {
   designation: string;
-  data: UserInfo;
+  data?: UserInfo;
   handleModal: Function;
 }): JSX.Element {
   const { designation, data, handleModal } = props;
+
   return (
     <div
       className={
@@ -16,13 +18,14 @@ function Item(props: {
       onClick={() => handleModal()}
     >
       {designation == "identifiers"
-        ? Object.keys(data).map((res, index) => (
+        ? identifiers.map((res, index) => (
             <Field isIdentifier name={res} key={index} />
           ))
         : Object.values(data).map((res, index) => (
             <Field name={res} key={index} />
           ))}
     </div>
+    
   );
 }
 function Field(props: { name: string; isIdentifier?: boolean }): JSX.Element {
@@ -34,3 +37,4 @@ function Field(props: { name: string; isIdentifier?: boolean }): JSX.Element {
   );
 }
 export default Item;
+// name.map((res, index) => <span key={index}>{res}</span>

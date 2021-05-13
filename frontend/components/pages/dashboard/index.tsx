@@ -2,13 +2,14 @@ import styles from "./style.module.scss";
 import Panel from "components/utils/architecture/ panel";
 import Status from "components/utils/architecture/status";
 import Table from "components/utils/architecture/table";
-function ContentDashboard(props): JSX.Element {
+function ContentDashboard(props: { data: any }): JSX.Element {
+  const { data } = props;
   return (
     <>
       <Status />
       <div className="rows">
         <Panel />
-        <Table data={null} />
+        <Table data={data} />
       </div>
       <style jsx>
         {`
@@ -19,7 +20,7 @@ function ContentDashboard(props): JSX.Element {
             height: 100%;
             row-gap: 48px;
             width: calc(100% - 400px);
-            max-width: 1100px
+            max-width: 1100px;
           }
         `}
       </style>
