@@ -5,6 +5,8 @@
     display: grid;
     width: auto;
     padding: 48px;
+    align-content: space-between;
+
     .basicInfo{
         display: flex;
         justify-content: space-between;

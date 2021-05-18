@@ -1,16 +1,21 @@
 import "../styles/globals.scss";
-import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
+import { useEffect, useState } from "react";
 import Layout from "components/utils/architecture/layout/";
-
+import { UserProvider, user } from "@/components/validation/context";
+import { useRouter } from "next/router";
 function MyApp({ Component, pageProps }) {
-  const { user, isAuthenticated, isLoading } = useAuth0();
-
+  const [currentUser, setUser] = useState(user);
+  const router = useRouter()
+  useEffect(() => {
+    console.log(currentUser);
+    currentUser.logged && router.push('/dashboard')
+  }, [currentUser]);
   return (
-    <Auth0Provider domain={process.env.DOMAIN} clientId={process.env.CLIENT_ID}>
+    <UserProvider value={currentUser}>
       <Layout>
-        <Component {...pageProps} />
+        <Component {...pageProps} setUser={setUser} />
       </Layout>
-    </Auth0Provider>
+    </UserProvider>
   );
 }
 

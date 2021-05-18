@@ -5,9 +5,11 @@ import Button from "components/utils/interactive/inputs/buttons/primary";
 import Tarjet from "components/utils/architecture/tarjet";
 import FormUser from "components/utils/architecture/formUser";
 import { UserInfo } from "components/interface";
-import { useEffect, useState } from "react";
-import { getUser, deleteUser } from "api";
+import { useEffect, useState, memo } from "react";
+import { getUser, deleteUser, updateUser } from "api";
+import Activity from "./activity";
 
+import { check } from "@/components/validation";
 Modal.setAppElement("#__next");
 function ModalUser(props: {
   isOpen: boolean;
@@ -15,6 +17,9 @@ function ModalUser(props: {
   closeModal: Function;
 }): JSX.Element {
   const { isOpen, id, closeModal } = props;
+  const [message, setMessage] = useState("");
+  const [del, setDelete] = useState(false);
+  const [isUpdate, setUpdate] = useState(false);
   const [user, setUser] = useState<UserInfo>({
     nombre: "",
     apellido: "",
@@ -22,9 +27,10 @@ function ModalUser(props: {
     dni: "",
     alta: "",
     domicilio: "",
-    actividad: { sesiones: [] },
+    actividad: { sesiones: [1] },
   });
-  const [del, setDelete] = useState(false);
+ 
+
   useEffect(() => {
     if (isOpen) {
       getUser(id).then((res) => {
@@ -38,21 +44,40 @@ function ModalUser(props: {
         dni: "",
         alta: "",
         domicilio: "",
-        actividad: { sesiones: [] },
+        actividad: { sesiones: [0] },
       });
     }
   }, [isOpen]);
   useEffect(() => {
-    console.log("sss", user);
-  }, [user]);
-  useEffect(() => {
-    deleteUser(id).then((res) => {
-      res.ok === 1 ? closeModal() : console.log("mal fla");
-    });
-  }, [del]);
-  const handleDelete = () => {
-    setDelete(true);
+    if (isUpdate ) {
+      if (check({  nombre: user.nombre,
+      apellido: user.apellido,
+      email: user.email,
+      dni: user.dni,
+      alta: user.alta,
+      domicilio: "",})) {
+        updateUser(id, user).then((res) => {
+          console.log(res);
+          setUpdate(false);
+        });
+      } else {
+        setMessage("Por favor ingrese nuevamente los datos");
+        console.log("sale por aca");
+      }
+    }
+  }, [isUpdate]);
+  const handleinputs = (e) => {
+    const aux = { ...user };
+    aux[e.target.name] = e.target.value;
+    setUser(aux);
   };
+
+  useEffect(() => {
+    del &&
+      deleteUser(id).then((res) => {
+        res.ok === 1 ? closeModal() : console.log("Usuario eliminado");
+      });
+  }, [del]);
   return (
     <Modal
       isOpen={isOpen}
@@ -74,7 +99,10 @@ function ModalUser(props: {
         </Button>
       </div>
       <Tarjet>
-        <h3>Actividad de {user.nombre}</h3>
+        <>
+          <h3>Actividad de {user.nombre}</h3>
+          <Activity sesiones={user.actividad.sesiones} />
+        </>
       </Tarjet>
       <FormUser
         user={{
@@ -85,9 +113,11 @@ function ModalUser(props: {
           alta: user.alta,
           email: user.email,
         }}
-        id={id}
+        message={message}
+        handleinputs={(e) => handleinputs(e)}
+        setUpdate={(e) => setUpdate(e)}
       />
     </Modal>
   );
 }
-export default ModalUser;
+export default memo(ModalUser);

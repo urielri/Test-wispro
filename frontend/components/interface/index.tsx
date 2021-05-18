@@ -7,6 +7,11 @@ export interface UserInfo {
     alta: string;
     domicilio: string;
     actividad?: {
-        sesiones: string[];
+        sesiones: number[];
     }
 }
+export interface User {
+    user: string;
+    psswd: string;
+    logged: boolean;
+  }

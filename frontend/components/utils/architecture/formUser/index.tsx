@@ -2,46 +2,24 @@ import styles from "./style.module.scss";
 import Button from "components/utils/interactive/inputs/buttons/primary";
 import { Input } from "antd";
 import { UserInfo } from "components/interface";
-import { useState, useEffect } from "react";
-import { updateUser } from "api";
-function FormUser(props: { user: UserInfo; id: string }): JSX.Element {
-  const { user, id } = props;
-  const [values, setValues] = useState<UserInfo>({
-    nombre: "",
-    apellido: "",
-    email: "",
-    dni: "",
-    alta: "",
-    domicilio: "",
-  });
-  const [isUpdate, setUpdate] = useState(false);
-  const handleinputs = (e) => {
-    const aux = { ...values };
-    aux[e.target.name] = e.target.value;
-    setValues(aux);
-  };
-  useEffect(() => {
-    console.log("22s22", values);
+import { useState, useEffect, memo } from "react";
 
-    setValues(user);
-  }, [user]);
-  useEffect(() => {
-    setValues(user);
-  }, []);
-  useEffect(() => {
-   isUpdate && updateUser(id, values).then((res) => {
-      console.log(res);
-    });
-    setUpdate(false);
-  }, [isUpdate]);
-  const handleButton = () => {
-    setUpdate((isUpdate) => !isUpdate);
-  };
+function FormUser(props: {
+  user: UserInfo;
+  message: string;
+  handleinputs: Function;
+  setUpdate: Function;
+}): JSX.Element {
+  const { user, message, handleinputs, setUpdate } = props;
+
   return (
     <div className={styles.formUser}>
       <div className={styles.info}>
-        <h3>Editar usuario</h3>
-        <Button type="simple" onClick={() => handleButton()}>
+        <div className={styles.message}>
+          <h3>Editar usuario</h3>
+          {message !== "" && <span>{message}</span>}
+        </div>
+        <Button type="simple" onClick={() => setUpdate(true)}>
           Guardar
         </Button>
       </div>
@@ -54,7 +32,7 @@ function FormUser(props: { user: UserInfo; id: string }): JSX.Element {
             name="nombre"
             placeholder="Nombre"
             bordered={true}
-            value={values.nombre}
+            value={user.nombre}
           />
 
           <Input
@@ -63,7 +41,7 @@ function FormUser(props: { user: UserInfo; id: string }): JSX.Element {
             name="apellido"
             placeholder="Apellido"
             bordered={true}
-            value={values.apellido}
+            value={user.apellido}
           />
 
           <Input
@@ -72,7 +50,7 @@ function FormUser(props: { user: UserInfo; id: string }): JSX.Element {
             name="dni"
             placeholder="Dni"
             bordered={true}
-            value={values.dni}
+            value={user.dni}
           />
         </div>
       </div>
@@ -85,7 +63,7 @@ function FormUser(props: { user: UserInfo; id: string }): JSX.Element {
             name="domicilio"
             placeholder="Domicilio"
             bordered={true}
-            value={values.domicilio}
+            value={user.domicilio}
           />
           <Input
             size="middle"
@@ -94,7 +72,7 @@ function FormUser(props: { user: UserInfo; id: string }): JSX.Element {
             placeholder="Alta"
             bordered={true}
             disabled
-            value={values.alta}
+            value={user.alta}
           />
         </div>
       </div>
@@ -108,7 +86,7 @@ function FormUser(props: { user: UserInfo; id: string }): JSX.Element {
             disabled
             placeholder="Email"
             bordered={true}
-            value={values.email}
+            value={user.email}
           />
         </div>
       </div>

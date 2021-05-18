@@ -41,3 +41,12 @@ export const deleteUser = async (id: string) => {
     return error;
   }
 };
+export const checkAdmin = async (user: string, psswd: string) => {
+  try {
+    const request = await fetch(`${API}/admin/${user}&${psswd}`);
+    const response = request.json();
+    return response;
+  } catch (err) {
+    return err;
+  }
+};

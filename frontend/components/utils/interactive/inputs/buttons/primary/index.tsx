@@ -3,7 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import style from './style.module.scss';
 
 function Button(props: any) {
-  const { children, type, width, onClick, loader, background } = props;
+  const { children, type, width, onClick, loader, background, ref } = props;
   const r = useRef(null);
   const [currentType, setCurrentT] = useState(style.default);
   useEffect(() => {

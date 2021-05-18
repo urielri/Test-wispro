@@ -1,6 +1,7 @@
 import styles from "./style.module.scss";
 import FormLogin from "./form-login";
-function Login(props): JSX.Element {
+function Login(props: { setUser: Function }): JSX.Element {
+  const { setUser } = props;
   return (
     <div className={styles.containerLogin}>
       <div className={styles.tarjet}>
@@ -8,9 +9,8 @@ function Login(props): JSX.Element {
           <h1>Bienvenido</h1>
         </div>
         <div className={styles.form}>
-          <FormLogin />
+          <FormLogin setUser={setUser}/>
         </div>
-     
       </div>
     </div>
   );

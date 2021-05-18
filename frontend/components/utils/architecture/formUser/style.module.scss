@@ -11,6 +11,14 @@
     .info{
         display: flex;
         justify-content: space-between;
+        .message {
+            display: flex;
+            column-gap: 24px;
+            align-items: center;
+            span{
+                font-size: 14px;
+            }
+        }
     }
     .section{
         display: flex;

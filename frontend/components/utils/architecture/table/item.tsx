@@ -18,11 +18,11 @@ function Item(props: {
       onClick={() => handleModal()}
     >
       {designation == "identifiers"
-        ? identifiers.map((res, index) => (
-            <Field isIdentifier name={res} key={index} />
+        ? identifiers.map((res) => (
+            <Field isIdentifier name={res} key={res} />
           ))
-        : Object.values(data).map((res, index) => (
-            <Field name={res} key={index} />
+        : Object.values(data).map((res) => (
+            <Field name={res} key={res} />
           ))}
     </div>
     

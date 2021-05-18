@@ -3,7 +3,7 @@ import Item from "./item";
 import { UserInfo } from "components/interface";
 import { useState, useEffect } from "react";
 import ModalUser from "components/utils/architecture/modal";
-import { getUser, getUsers } from "api";
+import { getUsers } from "api";
 function Table(props: { data: UserInfo[] }) {
   const { data } = props;
   const [currentUsers, setCurrentUsers] = useState(data);
@@ -28,6 +28,7 @@ function Table(props: { data: UserInfo[] }) {
               alta: res.alta,
               email: res.email,
             }}
+            key={res._id}
             designation="field"
             handleModal={() => handleModal(res._id)}
           />
