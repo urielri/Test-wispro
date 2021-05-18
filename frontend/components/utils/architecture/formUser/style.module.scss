@@ -19,6 +19,17 @@
                 font-size: 14px;
             }
         }
+        .err {
+            span{
+                color: red;
+            }
+            
+        }
+        .succesful{
+            span{
+                color: green;
+            }
+        }
     }
     .section{
         display: flex;

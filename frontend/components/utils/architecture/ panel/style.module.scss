@@ -1,20 +1,36 @@
-@import '../../../../styles/vars.module.scss';
-.panel{
-    background-color: $monocromatic-white;
-    border-radius: $radius;
-    display: grid;
-    width: auto;
-    padding: 48px;
-    align-content: space-between;
+@import "../../../../styles/vars.module.scss";
+.panel {
+  background-color: $monocromatic-white;
+  border-radius: $radius;
+  display: grid;
+  width: auto;
+  padding: 48px;
+  align-content: space-between;
 
-    .basicInfo{
-        display: flex;
-        justify-content: space-between;
-      //  align-items: center;
-        row-gap: 24px;
+  .basicInfo {
+    display: flex;
+    justify-content: space-between;
+    //  align-items: center;
+    row-gap: 24px;
+    h3 {
+      .user {
+        color: $UI-primary;
+      }
     }
-    .actions{
-        display: flex;
-        column-gap: 48px;
+  }
+  .actions {
+    display: flex;
+    column-gap: 48px;
+    .link {
+      padding: $padding-10-24;
+      border-radius: 44px;
+      height: 44px;
+      width: auto;
+      a {
+        color: $monocromatic-white;
+        font-size: 16px;
+        font-weight: 600;
+      }
     }
+  }
 }

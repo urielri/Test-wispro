@@ -10,7 +10,7 @@ function Tarjet(props: { children: JSX.Element }): JSX.Element {
           display: flex;
           background-color: #ffffff;
           border-radius: 20px;
-          flex-direction: row;
+          flex-direction: column;
           row-gap: 24px;
           padding: 48px;
           box-shadow: 0px 0px 40px rgba(186, 185, 185, 0.25);

@@ -22,20 +22,26 @@
     .form {
       padding: $padding-24;
       width: 100%;
-  
 
       form {
         display: flex;
         row-gap: 24px;
         width: 100%;
         flex-direction: column;
-        input[type='text']{
+        input[type="text"] {
           width: 300px;
           max-width: 300px !important;
         }
       }
       .actions {
         margin-top: 48px;
+      }
+      .messages {
+        span {
+          color: red;
+          font-weight: 500;
+          font-size: 14px;
+        }
       }
     }
   }

@@ -1,56 +1,88 @@
 @use 'sass:map';
-@import '../../../../styles/vars.module.scss';
-.table{
+@import "../../../../styles/vars.module.scss";
+.table {
+  display: grid;
+  padding: 48px;
+  background-color: $monocromatic-white;
+  border-radius: $radius;
+  row-gap: 48px;
+  grid-template-rows: 80px auto 48px;
+  height: 100%;
+  .data {
+    height: auto;
     display: grid;
-    padding: 48px;
-    background-color: $monocromatic-white;
-    border-radius: $radius;
-    row-gap: 48px;
-    grid-template-rows: 80px auto 48px;
+    padding: 2px 4px;
+    row-gap: 24px;
     height: 100%;
-    .data{
-        height: auto;
-        display: grid;
-        padding: 2px 4px;
-        row-gap: 24px;
-        height: 100%;
-        max-height: calc(68px * 4);
-        overflow: scroll;
+    max-height: calc(68px * 4);
+    overflow: scroll;
+  }
+  .additionalData {
+    text-align: right;
+    span {
+      font-size: map.get($text-16, "size");
+      font-weight: map.get($text-16, "weight");
+      color: $monocromatic-alternative-grey;
+      line-height: map.get($text-16, "line-height");
     }
-    .additionalData {
-        text-align: right;
-        span{
-            font-size: map.get($text-16, 'size');
-            font-weight: map.get($text-16, 'weight');
-            color: $monocromatic-alternative-grey;
-            line-height: map.get($text-16, 'line-height');
-        }
-    }
+  }
 }
-.row{
+.row {
     display: flex;
-    justify-content: space-between;
-    height: min-content;
-    border-radius: $radius;
-    padding: 12px 24px;
-    background-color: $monocromatic-terceary-white;
-
+  flex-direction: row;
+  height: min-content;
+  column-gap: 24px;
+  width: 100%;
+  border-radius: $radius;
+  padding: 12px 24px;
+  background-color: $monocromatic-terceary-white;
+  svg {
+    transition: all 0.2s;
+    width: 25px;
+    height: 25px;
+    transition-delay: 0.2s;
+    path {
+      fill: $monocromatic-alternative-grey;
+    }
+    &:hover {
+        transform: rotate(180deg);
+    
+    }
+  }
+  .items {
+    display: grid;
+    grid-template-columns: repeat(6, calc(100% / 6));
+   
+    width: 100%;
+  }
 }
 .identifiers {
-    padding: $padding-24;
-    box-shadow: $shadow-tarjet;
+  padding: $padding-24;
+  box-shadow: $shadow-tarjet;
+  background-color: $monocromatic-white;
+  cursor: pointer;
+  transition: all 0.2s ease-out;
+  &:hover {
+    transition-delay: 0.2s;
+  }
 }
-.field{
-    cursor: pointer;
-    transition: all 0.2s linear;
-    span{
-        font-size: map.get($text-16, 'size');
-        font-weight: map.get($text-16, 'weight');
-        color: $monocromatic-black;
-        line-height: map.get($text-16, 'line-height');
+.field {
+  cursor: pointer;
+  transition: all 0.2s linear;
+
+  .info{
+    overflow: hidden;
+    width: 100%;
+    span {
+  
+      font-size: map.get($text-16, "size");
+      font-weight: map.get($text-16, "weight");
+      color: $monocromatic-black;
+      line-height: map.get($text-16, "line-height");
     }
-    &:hover{
-        background-color: $monocromatic-white;
-        box-shadow: $shadow-discret;
-    }
+  }
+  &:hover {
+    background-color: $monocromatic-white;
+    box-shadow: $shadow-discret;
+  }
 }

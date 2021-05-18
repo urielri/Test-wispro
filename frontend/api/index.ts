@@ -50,3 +50,13 @@ export const checkAdmin = async (user: string, psswd: string) => {
     return err;
   }
 };
+export const orderUsers = async (ord: number) =>{
+  try{
+    const request = await fetch(`${API}/order/${ord}`);
+    const response = request.json();
+    return response;
+  }
+  catch(err){
+    return err
+  }
+}

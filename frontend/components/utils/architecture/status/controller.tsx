@@ -13,12 +13,9 @@ function Controller(props: {
   useEffect(() => {
     if (typeof window !== "undefined") {
       setLoading(false);
-      console.log(window.innerWidth);
     }
   }, []);
-  useEffect(() => {
-    console.log(loading);
-  }, [loading]);
+
   return (
     <div className={styles.controller}>
       <div className={styles.status}>

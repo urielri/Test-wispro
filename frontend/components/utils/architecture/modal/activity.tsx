@@ -4,7 +4,6 @@ import styles from "./style.module.scss";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 function Activity(props: { sesiones: number[] }): JSX.Element {
   const { sesiones } = props;
-  console.log(sesiones);
   return (
     <div className={styles.graphic}>
       <Chart

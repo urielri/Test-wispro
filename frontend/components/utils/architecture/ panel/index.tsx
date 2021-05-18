@@ -8,15 +8,17 @@ function Panel(): JSX.Element {
     <div className={styles.panel}>
       <div className={styles.basicInfo}>
         <h3>
-          Bienvenido, <span>{user.user}</span>
+          Bienvenido, <span className={styles.user}>{user.user}</span>
         </h3>
       </div>
       <div className={styles.actions}>
         <Link href="https://www.figma.com/file/zg2DZwS30JRfd5dszR1SoV/Untitled?node-id=1%3A761">
-          <button>Figma</button>
+          <Button type="rounded">Figma</Button>
         </Link>
         <Link href="https://github.com/urielri/test-wispro">
-          <button>GitHub</button>
+          <Button type="rounded" background="#24292e">
+            GitHub
+          </Button>
         </Link>
       </div>
     </div>

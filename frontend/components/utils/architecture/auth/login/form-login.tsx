@@ -25,11 +25,11 @@ function FormLogin(props: { setUser: Function }): JSX.Element {
   }, [currentUser]);
   const log = () => {
     if (check(values)) {
-      setLogg(values, setUser).then((res: { status: string }) => {
-        res.status !== "ok" && setMessage("Usuario o contrasena incorrectas");
+      setLogg(values, setUser).then((res: string) => {
+        res === "err" ? setMessage("Usuario o contrasena incorrectos.") : setMessage('')
       });
     } else {
-      setMessage("Por favor, ngrese nuevamente los datos");
+      setMessage("Por favor, ingrese nuevamente los datos.");
     }
   };
   const handleForm = (e) => {
@@ -53,7 +53,7 @@ function FormLogin(props: { setUser: Function }): JSX.Element {
           placeholder="Contrasena"
           bordered={true}
         />
-        {message !== "" && <div className={styles.messagges}>{message}</div>}
+        {message !== "" && <div className={styles.messages}><span>{message}</span></div>}
         <div className={styles.actions}>
           <Button type="rounded" onClick={() => log()}>
             Ingresar

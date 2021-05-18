@@ -3,20 +3,32 @@ import Item from "./item";
 import { UserInfo } from "components/interface";
 import { useState, useEffect } from "react";
 import ModalUser from "components/utils/architecture/modal";
-import { getUsers } from "api";
+import { getUsers, orderUsers } from "api";
 function Table(props: { data: UserInfo[] }) {
   const { data } = props;
   const [currentUsers, setCurrentUsers] = useState(data);
   const [isOpen, setOpen] = useState({ active: false, id: "" });
+  const [order, setOrder] = useState(false);
   useEffect(() => {
-    !isOpen.active && getUsers().then((res) => {setCurrentUsers(res)});
+    !isOpen.active &&
+      orderUsers(order ? 1 : -1).then((res) => {
+        setCurrentUsers(res);
+      });
   }, [isOpen]);
+  useEffect(() => {
+    orderUsers(order ? 1 : -1).then((res) => {
+      setCurrentUsers(res);
+    });
+  }, [order]);
   const handleModal = (id) => {
     setOpen({ active: !isOpen.active, id: id });
   };
   return (
     <div className={styles.table}>
-      <Item designation="identifiers" handleModal={handleModal} />
+      <Item
+        designation="identifiers"
+        onClick={() => setOrder((order) => !order)}
+      />
       <div className={styles.data}>
         {currentUsers.map((res) => (
           <Item
@@ -30,12 +42,14 @@ function Table(props: { data: UserInfo[] }) {
             }}
             key={res._id}
             designation="field"
-            handleModal={() => handleModal(res._id)}
+            onClick={() => handleModal(res._id)}
           />
         ))}
       </div>
       <div className={styles.additionalData}>
-        <span>Mostrando {currentUsers.length} usuarios de {currentUsers.length}</span>
+        <span>
+          Mostrando {currentUsers.length} usuarios de {currentUsers.length}
+        </span>
       </div>
       <ModalUser
         isOpen={isOpen.active}

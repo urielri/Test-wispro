@@ -7,7 +7,6 @@ function MyApp({ Component, pageProps }) {
   const [currentUser, setUser] = useState(user);
   const router = useRouter()
   useEffect(() => {
-    console.log(currentUser);
     currentUser.logged && router.push('/dashboard')
   }, [currentUser]);
   return (

@@ -4,7 +4,7 @@ import { checkAdmin } from "api";
 export async function setLogg(
   req: { user: string; psswd: string },
   setU: Function
-): Promise<{ status: string }> {
+): Promise<string> {
   const u = {
     user: req.user,
     psswd: req.psswd,
@@ -12,10 +12,10 @@ export async function setLogg(
   };
   const response = await checkAdmin(u.user, u.psswd).then((res) => {
      res.status === "ok" ? (u.logged = true) : (u.logged = false);
-     return res
+     return res.status
   });
   setU(u);
-  return {status: response};
+  return response;
 }
 export function check(ob: any) {
   if (typeof ob === "object") {

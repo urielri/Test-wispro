@@ -1,12 +1,13 @@
 import styles from "./style.module.scss";
 import { UserInfo } from "components/interface";
+import SortIcon from "components/SVG/sort";
 const identifiers = ["nombre", "apellido", "dni", "domicilio", "alta", "email"];
 function Item(props: {
   designation: string;
   data?: UserInfo;
-  handleModal: Function;
+  onClick: Function;
 }): JSX.Element {
-  const { designation, data, handleModal } = props;
+  const { designation, data, onClick } = props;
 
   return (
     <div
@@ -15,17 +16,17 @@ function Item(props: {
           ? `${styles.row} ${styles.identifiers}`
           : `${styles.row} ${styles.field}`
       }
-      onClick={() => handleModal()}
+      onClick={() => onClick()}
     >
-      {designation == "identifiers"
-        ? identifiers.map((res) => (
-            <Field isIdentifier name={res} key={res} />
-          ))
-        : Object.values(data).map((res) => (
-            <Field name={res} key={res} />
-          ))}
+      {designation === "identifiers" && <SortIcon />}
+      <div className={styles.items}>
+        {designation == "identifiers"
+          ? identifiers.map((res) => (
+              <Field isIdentifier name={res} key={res} />
+            ))
+          : Object.values(data).map((res) => <Field name={res} key={res} />)}
+      </div>
     </div>
-    
   );
 }
 function Field(props: { name: string; isIdentifier?: boolean }): JSX.Element {

@@ -3,6 +3,7 @@ import { getUsers } from "api";
 import { useUser } from "components/validation/context";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
+import Head from 'next/head'
 function Dashboard(props: { data: any }): JSX.Element {
   const { data } = props;
   const router = useRouter();
@@ -10,7 +11,7 @@ function Dashboard(props: { data: any }): JSX.Element {
   useEffect(() => {
   !currentUser.logged && router.push("/");
   });
-  return <>{currentUser.logged && <Content data={data} />}</>;
+  return <><Head><title>Dashboard</title></Head>{currentUser.logged && <Content data={data} />}</>;
 }
 export default Dashboard;
 export async function getStaticProps(): Promise<any> {

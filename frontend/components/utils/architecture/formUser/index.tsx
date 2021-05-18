@@ -6,20 +6,31 @@ import { useState, useEffect, memo } from "react";
 
 function FormUser(props: {
   user: UserInfo;
-  message: string;
+  message: { text: string; style: any };
   handleinputs: Function;
   setUpdate: Function;
+  disabled: boolean;
 }): JSX.Element {
-  const { user, message, handleinputs, setUpdate } = props;
-
+  const { user, message, handleinputs, setUpdate, disabled } = props;
+  
   return (
     <div className={styles.formUser}>
       <div className={styles.info}>
-        <div className={styles.message}>
+        <div
+          className={
+            message.text !== ""
+              ? `${styles.message} ${styles[message.style]}`
+              : styles.message
+          }
+        >
           <h3>Editar usuario</h3>
-          {message !== "" && <span>{message}</span>}
+          {message.text !== "" && <span>{message.text}</span>}
         </div>
-        <Button type="simple" onClick={() => setUpdate(true)}>
+        <Button
+          type="simple"
+          onClick={() => setUpdate(true)}
+          disabled={disabled}
+        >
           Guardar
         </Button>
       </div>
@@ -93,4 +104,4 @@ function FormUser(props: {
     </div>
   );
 }
-export default FormUser;
+export default memo(FormUser);
