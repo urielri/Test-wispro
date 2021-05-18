@@ -1,4 +1,4 @@
-import { Users } from "../database/schema";
+import { Users, UserA } from "../database/schema";
 import { Request, Response } from "express";
 export const queries = {
   allUsers: async (req, res) => {
@@ -26,9 +26,23 @@ export const queries = {
   update: async (req: Request, res: Response) => {
     Users.updateOne(
       { _id: req.params.id },
-      { nombre: req.params.nombre, apellido: req.params.apellido, dni: req.params.dni, domicilio: req.params.domicilio }
+      {
+        nombre: req.params.nombre,
+        apellido: req.params.apellido,
+        dni: req.params.dni,
+        domicilio: req.params.domicilio,
+      }
     ).then((result) => {
       return res.json(result);
     });
+  },
+  admin: async (req: Request, res: Response) => {
+    UserA.findOne({ user: req.params.user, psswd: req.params.psswd }).then(
+      (result) => {
+        return result !== null
+          ? res.json({ status: "ok" })
+          : res.json({ status: "err" });
+      }
+    );
   },
 };
