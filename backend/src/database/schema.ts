@@ -17,3 +17,15 @@ const UserAdmin = new Schema({
 });
 export const UserA = mongoose.model("UserAdmin", UserAdmin);
 export const Users = mongoose.model("Users", UsersSchema);
+const u = new Users({
+  nombre: "pruebassss",
+  apellido: "Casas",
+  dni: "3423832",
+  email: "chismososConchiste@gmail.com",
+  alta: "no",
+  domicilio: "L. alem 2432",
+  actividad: {
+    sesiones: ["1", "10", "13", "11", "5", "13", "8"],
+  },
+});
+u.save();
